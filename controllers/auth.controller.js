@@ -74,4 +74,11 @@ const signupUser = async (req, res, next) => {
     }    
 }
 
-export { signupUser }
+const signinUser = async(req, res, next) => {
+
+}
+
+const resetOtp = async(req, res, next) => {
+
+}
+export { signupUser, signinUser, resetOtp }
