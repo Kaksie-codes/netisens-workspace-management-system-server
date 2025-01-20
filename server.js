@@ -15,7 +15,6 @@ app.use(cors()); // Enable CORS for all routes
 
 //this middleware helps the backend receive json data from the frontend
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
 
 // Use cookie-parser middleware to parse cookies
 app.use(cookieParser());

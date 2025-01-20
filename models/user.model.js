@@ -19,12 +19,10 @@ const userSchema = new Schema({
         },
         gender:{
             type: String,
-            enum: ['male', 'female'],
-            required:true
+            enum: ['male', 'female'],            
         },
         phone_number:{
-            type: String,
-            required: true,
+            type: String,            
             unique: true,
         },
         password: String,       
@@ -74,11 +72,11 @@ const userSchema = new Schema({
             default: 0
         },
     },
-    google_auth: {
+    isGoogleAuthenticated: {
         type: Boolean,
         default: false
     },
-    verified: {
+    isVerified: {
         type: Boolean,
         default: false
     },
@@ -86,7 +84,11 @@ const userSchema = new Schema({
         type: String,
         enum:['user', 'admin'],
         default: 'user'
-    }    
+    },
+    lastLoggedin:{
+        type: Date,
+        default: Date.now()
+    }
 }, 
 { 
     timestamps: {
