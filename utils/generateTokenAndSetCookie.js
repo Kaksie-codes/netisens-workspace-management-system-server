@@ -7,9 +7,13 @@ const generateTokenAndSetCookie = (res, userId) => {
     res.cookie('accessToken', accessToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
+        // secure: false,
         sameSite: 'strict',
+        // sameSite: 'lax',
         maxAge: 3 * 24 * 60 * 60 * 1000 // 3 days in milliseconds
     })
+
+    console.log('Cookie set:', res.getHeaders()['set-cookie']);
 
     return accessToken;
 }

@@ -11,7 +11,13 @@ const app = express();
 // This enables us to read the content of the .env file
 dotenv.config();
 
-app.use(cors()); // Enable CORS for all routes
+
+// Enable CORS for all routes
+app.use(cors({
+    origin: 'http://localhost:5173', // Replace with your frontend's URL
+    credentials: true, // Allow credentials (cookies)
+}));
+// app.use(cors()); 
 
 //this middleware helps the backend receive json data from the frontend
 app.use(express.json());

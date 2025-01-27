@@ -164,7 +164,6 @@ const signoutUser = async (req, res, next) => {
     }   
 }
 
-
 // @desc Generate OTP
 // @route GET /api/auth/admin'
 // @access Public
@@ -199,7 +198,7 @@ const resetPassword = async (req, res, next) => {
         await user.save();
 
         // Clear JWT cookie
-        res.clearCookie('jwt');
+        res.clearCookie('accessToken');
 
         res.status(200).json({ 
             success: true,

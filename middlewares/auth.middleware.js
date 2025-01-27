@@ -10,12 +10,13 @@ const protect = async (req, res, next) => {
 
     // Get token from header
     token = req.cookies.accessToken ;
+    console.log({token})
 
     if(token){ 
         try{
             //Verify token
             const decoded = jwt.verify(token, process.env.SECRET_ACCESS_KEY);
-    
+            console.log({decoded})
             // Get user from the token
             req.user = await User.findById(decoded.userId).select('-personal_info.password');
             // console.log('user >>', req.user)
