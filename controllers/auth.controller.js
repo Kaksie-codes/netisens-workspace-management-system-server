@@ -341,7 +341,7 @@ const googleAuth = async (req, res, next) => {
             }else{    
                 const {_id:userId, personal_info: {username, profile_img, fullname}, role } = user            
                  // generate an access token
-                generateToken(res, userId);
+                generateTokenAndSetCookie(res, userId);
                 
                  // Respond with the user information
                 return res.status(200).json({
