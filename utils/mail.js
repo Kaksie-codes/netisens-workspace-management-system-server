@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer'
-import bcrypt from 'bcrypt'
+import bcryptjs from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import crypto from 'crypto'
 import VerificationToken from '../models/VerificationToken.model.js'
@@ -19,7 +19,7 @@ const generateAndSendPasswordResetOTP = async(user) => {
 
         // Hash the OTP
         const saltRounds = 10;
-        const hashedOTP = await bcrypt.hash(OTP, saltRounds); 
+        const hashedOTP = await bcryptjs.hash(OTP, saltRounds); 
 
          // create a new Verification token
          const resetToken = new ResetOTP({
@@ -163,7 +163,7 @@ const generateVerificationLinkTemplate = (username, link) => {
     <body>
         <div style="text-align: center; background-color: #f6f6f6; height: 100vh; width: 100%; ">
             <div style="padding: 10px;">
-                <h1 style="font-weight: 600;">enBlogg</h1>
+                <h1 style="font-weight: 600;">netisens</h1>
             </div>
             <div style="max-width: 620px; padding: 10px; width: auto; background-color: #ffffff; margin: 0 auto; font-family: sans-serif; color: #272727;">
                 <h1 style="color: #272727;">Hello 👋 ${username},</h1>

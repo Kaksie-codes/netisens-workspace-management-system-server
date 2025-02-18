@@ -1,6 +1,6 @@
 import handleError from "../utils/error.js";
 import User from "../models/user.model.js";
-import bcrypt from 'bcrypt';
+import bcryptjs from 'bcryptjs';
 import { generateVerificationToken } from "../utils/generateVerificationToken.js";
 import generateTokenAndSetCookie from "../utils/generateTokenAndSetCookie.js";
 import { generateAndSendPasswordResetOTP, sendVerificationEmail } from "../utils/mail.js";
@@ -52,10 +52,7 @@ const signupUser = async (req, res, next) => {
 
         // Hash the password
         const saltRounds = 10;
-        const hashedPassword = await bcrypt.hash(password, saltRounds);
-
-        // send verification link to the user
-        // const verificationToken = generateVerificationToken();
+        const hashedPassword = await bcryptjs.hash(password, saltRounds);
     
         // Create a new User
         const newUser = new User({
@@ -115,7 +112,7 @@ const signinUser = async (req, res, next) => {
             }
 
             // comapare new password with encrypted password
-            const validated = await bcrypt.compare(password, user.personal_info.password);
+            const validated = await bcryptjs.compare(password, user.personal_info.password);
 
             // If passwords dont match
             if(!validated){
