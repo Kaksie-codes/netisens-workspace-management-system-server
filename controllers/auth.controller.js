@@ -275,7 +275,7 @@ const verifyOTP = async (req, res, next) => {
                 return next(handleError(403, 'OTP has expired. Please request again.'))
             }else{
                 // compare generated OTP to the hashed OTP in th database
-                const validOTP = await bcrypt.compare(OTP.trim(), savedOTP);
+                const validOTP = await bcryptjs.compare(OTP.trim(), savedOTP);
                 // const validated = await bcrypt.compare(password, user.personal_info.password);
 
                 console.log({validOTP})
