@@ -28,6 +28,10 @@ app.use(cookieParser());
 // Import routes
 app.use('/api/auth', authRoutes);
 
+app.get('/', (req, res) => {
+    res.json({message: "Hello World!"})
+})
+
 const PORT = 3050;
 mongoose.connect(process.env.MONGO_DB_URL)
 .then(() => {
