@@ -161,6 +161,43 @@ const signoutUser = async (req, res, next) => {
     }   
 }
 
+
+// @desc Get User Details
+// @route GET /api/auth/getUser'
+// @access Public
+const getUser = async (req, res, next) => {
+    const { _id } = req.user;    
+
+    try {
+        const user = await User.findById(_id);
+
+        if(!user){
+            return next(handleError(400, "User not found" ));            
+        }
+    
+        const { 
+            personal_info: { username, fullname, profile_img, phone_number}, 
+            social_links,
+            role 
+        } = user
+            // const expiryTime = new Date(Date.now() + 360000) //1 hour
+            return res.status(200).json({
+                success: true,
+                status: 'Success', 
+                message: `Successfully signed in`,                
+                user:{
+                    username, 
+                    fullname,               
+                    profile_img,
+                    role,
+                    phone_number,
+                }                
+            })            
+    } catch (error) {
+        next(error);
+    }   
+}
+
 // @desc Generate OTP
 // @route GET /api/auth/admin'
 // @access Public
@@ -509,5 +546,6 @@ export {
     resendOTP,
     googleAuth,
     adminRoute,
-    resendVerificationEmail
+    resendVerificationEmail,
+    getUser
 }

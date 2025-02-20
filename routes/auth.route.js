@@ -2,6 +2,7 @@ import { Router } from "express";
 import { 
     adminRoute, 
     generateOTP, 
+    getUser, 
     googleAuth, 
     resendOTP, 
     resendVerificationEmail, 
@@ -44,6 +45,8 @@ router.get('/resendOTP', resendOTP);
 
 // Google Auth
 router.post('/google-auth', googleAuth);
+
+router.get('/getUser', protect, getUser);
 
 // private routes
 router.post('/resetPassword', protect, resetPassword);
